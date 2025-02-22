@@ -53,27 +53,10 @@ int Span::longestSpan() const
     if (_vec.size() < 2)
         throw std::length_error("Not enough numbers in the span");
 
+    std::vector<int>::const_iterator min = std::min_element(_vec.begin(), _vec.end());
+    std::vector<int>::const_iterator max = std::max_element(_vec.begin(), _vec.end());
 
-    int biggest = 0;
-    int smallest = 0;
-
-    //Find biggest
-    for (size_t i = 0; i < _vec.size(); i++)
-    {
-        if (biggest < _vec[i])
-            biggest = _vec[i];
-    }
-
-    //Find smallest
-    if (_vec.size() >= 1)
-        smallest = _vec[0];
-    for (size_t i = 1; i < _vec.size(); i++)
-    {
-        if (smallest > _vec[i])
-            smallest = _vec[i];
-    }
-    
-    return biggest - smallest;
+    return *max - *min;
 }
 
 void    Span::addRange(Iter begin, Iter end)
