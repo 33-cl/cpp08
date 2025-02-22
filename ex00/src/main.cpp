@@ -12,7 +12,7 @@ int main()
 
     try
     {
-        std::cout << *(easyfind(container, 5)) << std::endl;
+        std::cout << *(easyfind(container, -7)) << std::endl;
     }
     catch(const std::exception& e)
     {

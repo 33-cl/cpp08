@@ -32,14 +32,19 @@ int Span::shortestSpan() const
 {
     if (_vec.size() < 2)
         throw std::length_error("Not enough numbers in the span");
-   
-    int shortest_span = std::abs(_vec[1] - _vec[0]);
 
-    for (size_t i = 2; i < _vec.size(); i++)
+    std::vector<int> tmp = _vec;
+    std::sort(tmp.begin(), tmp.end());
+
+    int shortest_span = tmp[1] - tmp[0];
+
+    for (size_t i = 2; i < tmp.size(); i++)
     {
-        if (shortest_span > std::abs(_vec[i] - _vec[i - 1]))
-            shortest_span = std::abs(_vec[i] - _vec[i - 1]);
+        int span = tmp[i] - tmp[i - 1];
+        if (span < shortest_span)
+            shortest_span = span;
     }
+
     return shortest_span;
 }
 
